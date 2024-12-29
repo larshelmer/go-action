@@ -1,3 +1,5 @@
+name: Action
+on: [push, pull_request]
 jobs:
   go-action:
     runs-on: ubuntu-latest
