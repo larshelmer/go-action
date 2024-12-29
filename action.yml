@@ -1,0 +1,6 @@
+name: "go-action"
+description: "A github action in go"
+author: "lars helmer"
+runs:
+  using: docker
+  image: Dockerfile
