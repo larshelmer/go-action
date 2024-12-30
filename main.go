@@ -23,7 +23,9 @@ func main() {
 	renderer := newPdfRenderer()
 
 	pdf := markdown.Render(d, renderer)
-	os.WriteFile(out, pdf, 0666)
+	if err := os.WriteFile(out, pdf, 0666); err != nil {
+		log.Fatalf("os.WriteFile: %v\n", err)
+	}
 }
 
 func Fn(name string) {
