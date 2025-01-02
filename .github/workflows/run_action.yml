@@ -4,15 +4,17 @@ jobs:
   go-action:
     runs-on: ubuntu-latest
     steps:
+      - env:
+        OUT_FILE: "test.pdf"
       - uses: actions/checkout@v4
       - name: action
         id: action
         uses: ./
         with:
           in: "test.md"
-          out: "test.pdf"
+          out: "$OUT_FILE"
       - name: check result
-        env:
-          JOB_CONTEXT: ${{ toJson(job) }}
         run: |
-          echo "$JOB_CONTEXT\n"
+          if test -f "$OUT_FILE"; then
+              echo "file exists"
+          fi
