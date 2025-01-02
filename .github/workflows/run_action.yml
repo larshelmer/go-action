@@ -1,14 +1,13 @@
 name: Action
 on: [push, pull_request]
+env:
+  OUT_FILE: test.pdf
 jobs:
   go-action:
     runs-on: ubuntu-latest
     steps:
-      - env:
-        OUT_FILE: "test.pdf"
       - uses: actions/checkout@v4
       - name: action
-        id: action
         uses: ./
         with:
           in: "test.md"
