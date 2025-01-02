@@ -12,6 +12,9 @@ jobs:
           in: "test.md"
           out: "test.pdf"
       - name: check result
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+          OUTPUTS: ${{ steps.action.outputs }}
         run: |
-          pwd
-          ls
+          echo "$JOB_CONTEXT\n"
+          echo "$OUTPUTS"
