@@ -1,6 +1,13 @@
 name: "go-action"
 description: "A github action in go"
 author: "lars helmer"
+inputs:
+  in:
+    description: "Input file name"
+    required: true
+  out:
+    description: "Output file name"
+    required: true
 runs:
   using: docker
   image: Dockerfile
