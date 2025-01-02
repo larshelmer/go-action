@@ -1,7 +1,5 @@
 name: Action
 on: [push, pull_request]
-env:
-  OUT_FILE: test.pdf
 jobs:
   go-action:
     runs-on: ubuntu-latest
@@ -11,7 +9,7 @@ jobs:
         uses: ./
         with:
           in: "test.md"
-          out: "$OUT_FILE"
+          out: "test.pdf"
       - name: check result
         run: |
-          test -f $OUT_FILE
+          test -f test.pdf
