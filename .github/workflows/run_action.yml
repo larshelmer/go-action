@@ -13,4 +13,5 @@ jobs:
           out: "test.pdf"
       - name: check result
         run: |
-          echo "Do something with this ${{ steps.action.outputs.added }}."
+          pwd
+          ls
