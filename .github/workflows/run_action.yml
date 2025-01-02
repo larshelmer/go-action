@@ -14,7 +14,5 @@ jobs:
       - name: check result
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
-          OUTPUTS: ${{ steps.action.outputs }}
         run: |
           echo "$JOB_CONTEXT\n"
-          echo "$OUTPUTS"
