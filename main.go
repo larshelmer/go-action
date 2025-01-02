@@ -4,27 +4,15 @@ import (
 	"fmt"
 	"log"
 	"os"
-
-	"github.com/gomarkdown/markdown"
-	"github.com/gomarkdown/markdown/parser"
 )
 
 func main() {
 	in := os.Getenv("INPUT_IN")
 	out := os.Getenv("INPUT_OUT")
-	md, err := os.ReadFile(in)
-	if err != nil {
-		log.Fatalf("os.ReadFile: %v\n", err)
-	}
-
-	p := parser.New()
-	d := p.Parse(md)
 
 	renderer := newPdfRenderer()
-
-	pdf := markdown.Render(d, renderer)
-	if err := os.WriteFile(out, pdf, 0666); err != nil {
-		log.Fatalf("os.WriteFile: %v\n", err)
+	if err := renderer.Run(in, out); err != nil {
+		log.Fatal(err)
 	}
 }
 

@@ -6,3 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./
+      - name: action
+        id: run
+        with:
+          in: "test.md"
+          out: "test.pdf"
+      - name: check result
+        run: |
+          echo "Do something with this ${{ steps.files.outputs.added }}."

@@ -2,9 +2,12 @@ package main
 
 import (
 	"io"
+	"os"
 
 	"github.com/go-pdf/fpdf"
+	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/ast"
+	"github.com/gomarkdown/markdown/parser"
 )
 
 type pdfRenderer struct {
@@ -41,6 +44,18 @@ func (p *pdfRenderer) RenderNode(w io.Writer, node ast.Node, entering bool) ast.
 	case *ast.ListItem:
 	}
 	return ast.GoToNext
+}
+
+func (p *pdfRenderer) Run(in string, out string) error {
+	md, err := os.ReadFile(in)
+	if err != nil {
+		return err
+	}
+
+	parser := parser.New()
+	d := parser.Parse(md)
+	_ = markdown.Render(d, p)
+	return p.pdf.OutputFileAndClose(out)
 }
 
 func newPdfRenderer() *pdfRenderer {
