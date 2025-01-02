@@ -5,9 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./
       - name: action
-        id: run
+        uses: ./
         with:
           in: "test.md"
           out: "test.pdf"
