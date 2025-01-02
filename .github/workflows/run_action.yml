@@ -6,10 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: action
+        id: action
         uses: ./
         with:
           in: "test.md"
           out: "test.pdf"
       - name: check result
         run: |
-          echo "Do something with this ${{ steps.files.outputs.added }}."
+          echo "Do something with this ${{ steps.action.outputs.added }}."
